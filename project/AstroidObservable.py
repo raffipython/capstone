@@ -29,6 +29,16 @@ class Astroid(cmd.Cmd):
         except:
             pass
 
+    def do_nextyear(self, arg):
+        """ Get all objects within next year"""
+        URL = "https://ssd-api.jpl.nasa.gov/cad.api?date-max=%2B365&diameter=1&dist-max=0.05&fullname=1&nea-comet=1&rating=1&www=1"
+        try:
+            x = requests.get(URL)
+            print(x.status_code)
+            p(x.content)
+        except:
+            pass
+
     def do_settings(self, arg):
         """ Get settings """
         print(f"OBJECT ID: {self.OBJECT_ID}")
