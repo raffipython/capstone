@@ -4,16 +4,26 @@ import requests
 from pprint import pprint as p # awesome module to pretty print JSONs
 import json
 
+# ADD UI/UX
+#   Collect data (give range)
+#   View asteroid list
+#   Choose (via number in text box)
+#   Calculate
+#   Option to Destroy
+#       Y/N
+
+
+
 class Astroid(cmd.Cmd):
 
     prompt = "[>] "
     intro = """
-    ___         __             _     ______  __                               __    __   
-   /   |  _____/ /__________  (_)___/ / __ \/ /_  ________  ______   ______ _/ /_  / /__ 
-  / /| | / ___/ __/ ___/ __ \/ / __  / / / / __ \/ ___/ _ \/ ___/ | / / __ `/ __ \/ / _ \\
- / ___ |(__  ) /_/ /  / /_/ / / /_/ / /_/ / /_/ (__  )  __/ /   | |/ / /_/ / /_/ / /  __/
-/_/  |_/____/\__/_/   \____/_/\__,_/\____/_.___/____/\___/_/    |___/\__,_/_.___/_/\___/ 
-\nWelcome to Astroid Observable"""
+  _   _ _____ _____     __
+ | \ | | ____/ _ \ \   / /
+ |  \| |  _|| | | \ \ / / 
+ | |\  | |__| |_| |\ V /  
+ |_| \_|_____\___/  \_/   
+\nWelcome to Near Earth Objects Viewer"""
 
 
     OBJECT_ID = None #Example 2023 HL. Run: astroid 2023 HL
