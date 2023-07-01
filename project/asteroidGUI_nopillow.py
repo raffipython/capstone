@@ -1,10 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
+import backend
 
 #   Need to specify a title for the application window
 #   Add title to application
 #   Specify function for search functionality
 #   Add functionality to automatically pull asteroid list on application startup
+
+DATABASE = {}
+
+
 
 #Create the main window as index and set default window size
 index = tk.Tk()

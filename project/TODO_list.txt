@@ -1,0 +1,50 @@
+
+frontend.py
+#   Need to specify a title for the application window
+#   Add title to application
+#   Specify function for search functionality
+#   Add functionality to automatically pull asteroid list on application startup
+
+
+count = DB['count']
+
+
+
+
+# scratch
+
+
+
+"""
+
+
+    def do_list(self, arg):
+         Lists all asteroids in DB
+        for i in range(0, self.COUNT):
+            name = self.DB['data'][i][0]
+            self.NAMES.update({name:i})
+            print(name)
+
+    def do_threat(self, arg):
+        Lists the threat levels for the asteroids
+        try:
+            if self.COUNT > 0:
+                for i in range(self.COUNT):
+                    name = self.DB['data'][i][0]
+                    dist_min = float(self.DB['data'][i][5])
+                    threat = self.determine_threat(dist_min)
+                    print(f"Asteroid: {name}")
+                    print(f"Threat level: {threat}")
+                    print()
+            else:
+                print("Asteroid doesn't exist or data is not yet found.")
+        except Exception as e:
+            print(f"Error, incorrect input: {str(e)}")
+
+
+    def add():
+        Add an asteroid object to DB['data']
+        # Future possibly, if we can figure it out
+        pass
+"""
+
