@@ -24,11 +24,11 @@ search_frame.grid(row=1, column=1, sticky="SW")
 
 #Create a Frame to house asteroid list
 asteroid_list_fame = ttk.Frame(index)
-asteroid_list_fame.grid(row=2, column=0, columnspan=2, ipady=75)
+asteroid_list_fame.grid(row=2, column=0, columnspan=2)
 
 #Frame to house logs
 log_frame = ttk.Frame(index)
-log_frame.grid(row=3, column=0, columnspan=2, ipady=55)
+log_frame.grid(row=3, column=0, columnspan=2)
 
 #Create a frame to house buttons
 button_frame = ttk.Frame(index)
@@ -41,11 +41,21 @@ imagelab.grid(row=0, column=0, rowspan=2)
 
 #Asteroid List
 ttk.Label(asteroid_list_fame, text="This is where our asteroid list will go from JSON dump",
-          background="grey", width=150).grid(sticky="N")
+          background="grey", width=100).grid(row=0,column=0,sticky="N")
+asteroid_columns = ("Column1", "Column2", "Column3", "Column4", "We can add more..")
+ast_tree = ttk.Treeview(asteroid_list_fame, columns=asteroid_columns, show='headings')
+ast_tree.grid(row=1, column=0)
+for col in asteroid_columns:
+    ast_tree.heading(col, text=col)
 
 #Log List
 ttk.Label(log_frame, text="This is where our logs will be",
-          background="black", foreground="white", width=150).grid(sticky="N")
+          background="black", foreground="white", width=100).grid(row=0,column=0, sticky="N")
+log_columns = ("Column1", "Column2", "Column3", "Column4", "We can add more..")
+log_tree = ttk.Treeview(log_frame, columns=log_columns, show='headings')
+log_tree.grid(row=1, column=0)
+for col in log_columns:
+    log_tree.heading(col, text=col)
 
 #Asteroid search bar
 asteroid_name = tk.StringVar()
