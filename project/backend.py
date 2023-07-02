@@ -64,11 +64,12 @@ def asteroid(database, asteroid_name, count):
             names_dictionary.update({name: i})
         if asteroid_name in list(names_dictionary.keys()):
             name = database['data'][names_dictionary.get(asteroid_name)][0]
-            dist_min = float(
-                # dist_min - minimum (3-sigma) approach distance (au)
-                database['data'][names_dictionary.get(asteroid_name)][5])
+            # dist_min - minimum (3-sigma) approach distance (au)
+            dist_min = float(database['data'][names_dictionary.get(asteroid_name)][5])
             threat = determine_threat(dist_min)
-            return [name, dist_min, threat]
+            # v_rel - velocity relative to the approach body at close approach (km/s)
+            velocity = float(database['data'][names_dictionary.get(asteroid_name)][7])
+            return [name, dist_min, threat, velocity]
         else:
             return "Asteroid not found!"
     except Exception as e:

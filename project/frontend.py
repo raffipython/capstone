@@ -1,9 +1,9 @@
 import json
 import sys
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 import backend as be
-from pprint import pprint as p # DELETE LATER
+from pprint import pprint as p  # DELETE LATER
 
 
 def asteroid_data_handler():
@@ -13,17 +13,18 @@ def asteroid_data_handler():
 
     text = as_name_entry.get()
     if text and len(ast_tree.get_children()) > 0:
-        #print("name, dist_min, threat")
-        name, dist_min, threat = be.asteroid(db, text, count)
+        # print("name, dist_min, threat")
+        name, dist_min, threat, velocity = be.asteroid(db, text, count)
         for item in ast_tree.get_children():
             ast_tree.delete(item)
-        ast_tree.insert('', 'end', text="", values=(name, dist_min, threat))
+        ast_tree.insert('', 'end', text="", values=(name, dist_min, threat, velocity))
 
     else:
         if len(ast_tree.get_children()) == 0:
             for i in range(count):
-                name, dist_min, threat = be.asteroid(db, db['data'][i][0], count)
-                ast_tree.insert('', 'end', text="", values=(name, dist_min, threat))
+                name, dist_min, threat, velocity = be.asteroid(db, db['data'][i][0], count)
+                ast_tree.insert('', 'end', text="", values=(name, dist_min, threat, velocity))
+
 
 # Initialize variables
 db = {}
@@ -66,7 +67,7 @@ imagelab.grid(row=0, column=0, rowspan=2)
 ttk.Label(asteroid_list_fame, text="This is where our asteroid list will go from JSON dump",
           background="grey", width=100).grid(row=0, column=0, sticky="N")
 # API fields: Designation (des), Distance (dist)
-asteroid_columns = ("Designation", "Distance", "Threat", "Column4", "We can add more..")
+asteroid_columns = ("Designation", "Distance", "Threat", "Velocity", "We can add more..")
 ast_tree = ttk.Treeview(asteroid_list_fame, columns=asteroid_columns, show='headings')
 ast_tree.grid(row=10, column=0)
 for col in asteroid_columns:
@@ -101,8 +102,8 @@ if __name__ == '__main__':
     db = json.loads(api_data.content)
     count = db['count']
     if api_data.status_code == 200:
-        #print(db['count'])  # DELETE LATER
-        #p(db['data'])   # DELETE LATER
+        # print(db['count'])  # DELETE LATER
+        # p(db['data'])   # DELETE LATER
         index.mainloop()
     else:
         print("Something wrong, could not fetch data. Exiting.")
