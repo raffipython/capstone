@@ -81,7 +81,7 @@ log_tree.grid(row=1, column=0)
 for col in log_columns:
     log_tree.heading(col, text=col)
 
-# Asteroid search bar
+# Asteroid search bar item
 asteroid_name = tk.StringVar()
 asteroid_name_label = ttk.Label(search_frame, text="Asteroid Name:", width=14, font=14)
 asteroid_name_label.grid(row=0, column=0)
