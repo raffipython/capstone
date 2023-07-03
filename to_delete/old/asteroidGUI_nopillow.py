@@ -40,7 +40,7 @@ button_frame = ttk.Frame(index)
 button_frame.grid(row=4, column=0, columnspan=2)
 
 # image link https://th.bing.com/th?id=OIF.d%2fCjgd%2fJ42C1VjiLa2RSXg&pid=ImgDet&rs=1
-img = tk.PhotoImage(file="../asteroid.gif")
+img = tk.PhotoImage(file="../../asteroid.gif")
 imagelab = ttk.Label(index, image=img)
 imagelab.grid(row=0, column=0, rowspan=2)
 

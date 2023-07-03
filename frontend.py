@@ -3,7 +3,6 @@ import sys
 import tkinter as tk
 from tkinter import ttk
 import backend as be
-from pprint import pprint as p  # DELETE LATER
 
 
 def asteroid_data_handler():
