@@ -13,16 +13,24 @@ def asteroid_data_handler():
     text = as_name_entry.get()
     if text and len(ast_tree.get_children()) > 0:
         # print("name, dist_min, threat")
-        name, dist_min, threat, velocity, doa = be.asteroid(db, text, count)
+        name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db, text, count)
         for item in ast_tree.get_children():
             ast_tree.delete(item)
-        ast_tree.insert('', 'end', text="", values=(name, dist_min, threat, velocity, doa))
+        ast_tree.insert('',
+                        'end',
+                        text="",
+                        values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date)
+                        )
 
     else:
         if len(ast_tree.get_children()) == 0:
             for i in range(count):
-                name, dist_min, threat, velocity, doa = be.asteroid(db, db['data'][i][0], count)
-                ast_tree.insert('', 'end', text="", values=(name, dist_min, threat, velocity, doa))
+                name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db, db['data'][i][0], count)
+                ast_tree.insert('',
+                                'end',
+                                text="",
+                                values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date)
+                                )
 
 
 # Initialize variables
@@ -32,7 +40,7 @@ count = 0
 # Create the main window as index and set default window size
 index = tk.Tk()
 index.title("Near Earth Objects Viewer")
-index.geometry("1000x600")
+index.geometry("1400x800")
 index.resizable(False, False)
 index.columnconfigure(1, weight=1)
 
@@ -66,7 +74,8 @@ imagelab.grid(row=0, column=0, rowspan=2)
 ttk.Label(asteroid_list_fame, text="This is where our asteroid list will go from JSON dump",
           background="grey", width=100).grid(row=0, column=0, sticky="N")
 # API fields: Designation (des), Distance (dist)
-asteroid_columns = ("Designation", "Distance", "Threat", "Velocity", "DOA")
+asteroid_columns = ("Designation", "Distance (AU)", "Distance (Miles)", "Threat", "Velocity", "Closest Approach",
+                    "Date if trajectory changed")
 ast_tree = ttk.Treeview(asteroid_list_fame, columns=asteroid_columns, show='headings')
 ast_tree.grid(row=10, column=0)
 for col in asteroid_columns:
@@ -75,7 +84,7 @@ for col in asteroid_columns:
 # Log List
 ttk.Label(log_frame, text="This is where our logs will be",
           background="black", foreground="white", width=100).grid(row=0, column=0, sticky="N")
-log_columns = ("Column1", "Column2", "Column3", "Column4", "Column5")
+log_columns = ("Column1", "Column2", "Column3", "Column4", "Column5", "Column6", "Column7")
 log_tree = ttk.Treeview(log_frame, columns=log_columns, show='headings')
 log_tree.grid(row=1, column=0)
 for col in log_columns:

@@ -1,4 +1,5 @@
 import requests
+import datetime as dt
 
 OBJECT_ID = None  # Example 2023 HL. Run: astroid 2023 HL
 URL = "https://www.neowsapp.com/rest/v1/neo/"
@@ -15,20 +16,26 @@ def determine_threat(distance):
     :type distance: float
     :return: Message about threat level
     """
-
-    distance_miles = distance * 0.62137119
-    if 0.08 < distance_miles <= 0.09:
+    if 0.08 < distance <= 0.09:
         return "Extremely low, safe to lightly monitor."
-    elif 0.06 < distance_miles <= 0.07:
+    elif 0.06 < distance <= 0.07:
         return "Low"
-    elif 0.04 < distance_miles <= 0.05:
+    elif 0.04 < distance <= 0.05:
         return "Moderate, monitor closely for changes in trajectory."
-    elif 0.02 < distance_miles <= 0.03:
+    elif 0.02 < distance <= 0.03:
         return "High, start assessing plans of action to defend planet."
-    elif distance_miles <= 0.01:
+    elif distance <= 0.01:
         return "Impact imminent. Say a prayer."
     else:
         return "Negligible"
+
+
+def impact_date_calculator(vel, dist):
+    current_date = dt.datetime.now()
+    delta = dt.timedelta(hours=dist/vel)
+    impact_date = current_date + delta
+    impact_date = impact_date.strftime("%Y-%b-%d %H:%S")
+    return impact_date
 
 
 def neos_approaching(days):
@@ -67,17 +74,20 @@ def asteroid(database, asteroid_name, count):
         if asteroid_name in list(names_dictionary.keys()):
             name = database['data'][names_dictionary.get(asteroid_name)][0]
             # dist_min - minimum (3-sigma) approach distance (au)
-            dist_min_km = float(database['data'][names_dictionary.get(asteroid_name)][5])
-            dist_min_miles = dist_min_km * 92_955_807.3
-            threat = determine_threat(dist_min_miles)
-            dist_min_formatted = "{:.2f}".format(dist_min_miles)  # Format to two decimal places
-            dist_min_str = f"{dist_min_formatted} miles"
+            dist_min_au = float(database['data'][names_dictionary.get(asteroid_name)][5])
+            dist_min_miles = dist_min_au * 92955807.3
+            threat = determine_threat(dist_min_au)
+            dist_min_formatted = "{:.3f}".format(dist_min_au)  # Format to two decimal places
+            dist_min_miles_formatted = "{:.2f}".format(dist_min_miles)  # Format to two decimal places
             # v_rel - velocity relative to the approach body at close approach (km/s)
             velocity = float(database['data'][names_dictionary.get(asteroid_name)][7])
+            velocity = velocity * 2236.94  # Convert km/s to mph
+            impact_date = impact_date_calculator(velocity, dist_min_miles)
             velocity_format = "{:.2f}".format(velocity)
             velocity_str = f"{velocity_format} MPH"
-            doa = database['data'][names_dictionary.get(asteroid_name)][3]
-            return [name, dist_min_str, threat, velocity_str, doa]
+            closest_approach_date = database['data'][names_dictionary.get(asteroid_name)][3]
+            return [name, dist_min_formatted, dist_min_miles_formatted, threat, velocity_str, closest_approach_date,
+                    impact_date]
         else:
             return "Asteroid not found!"
     except Exception as e:
