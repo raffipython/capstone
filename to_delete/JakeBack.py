@@ -1,6 +1,13 @@
 import requests
 import datetime as dt
 
+OBJECT_ID = None  # Example 2023 HL. Run: astroid 2023 HL
+URL = "https://www.neowsapp.com/rest/v1/neo/"
+DB = {}  # main database dictionary
+COUNT = 0
+TOLERANCE = 0.04  # for testing, probably want lower for real
+NAMES = {}
+
 
 def determine_threat(distance):
     """ Determines threat level based on distance
@@ -24,14 +31,6 @@ def determine_threat(distance):
 
 
 def impact_date_calculator(vel, dist):
-    """
-
-    :param vel: velocity of NEO in MPH
-    :type vel: float
-    :param dist: distance of NEO in miles
-    :type dist: float
-    :return: date string
-    """
     current_date = dt.datetime.now()
     delta = dt.timedelta(hours=dist/vel)
     impact_date = current_date + delta
@@ -42,9 +41,9 @@ def impact_date_calculator(vel, dist):
 def neos_approaching(days):
     """ NEOs approaching Earth within given days
 
-    :param days: range of days for approaching NEOs
+    :param days: Range of days for approaching NEOs
     :type days: int
-    :return: dictionary of NEOs approaching Earth within given days
+    :return: Dictionary of NEOs approaching Earth within given days
     """
 
     data = None
@@ -58,13 +57,13 @@ def neos_approaching(days):
 def asteroid(database, asteroid_name, count):
     """ Queries database dictionary for a match for the asteroid
 
-    :param database: main data dictionary
+    :param database: Main data dictionary
     :type database: dict
-    :param asteroid_name: actual NEO designator
+    :param asteroid_name:
     :type asteroid_name: str
-    :param count: count of NEOs
+    :param count: Count of NEOs
     :type count: int
-    :return: list with data from the database, or error message string
+    :return: List with data from the database, or error message string
     """
 
     try:
