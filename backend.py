@@ -24,7 +24,7 @@ def determine_threat(distance):
 
 
 def impact_date_calculator(vel, dist):
-    """
+    """ Calculates date of impact given current velocity and distance
 
     :param vel: velocity of NEO in MPH
     :type vel: float
