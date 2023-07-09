@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>backend module &#8212; Near Earth Objects Viewer 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="frontend module" href="frontend.html" />
+    <link rel="prev" title="capstone" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-backend">
+<span id="backend-module"></span><h1>backend module<a class="headerlink" href="#module-backend" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="backend.asteroid">
+<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">asteroid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">asteroid_name</span></em>, <em class="sig-param"><span class="n">count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.asteroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries database dictionary for a match for the asteroid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database</strong> (<em>dict</em>) – main data dictionary</p></li>
+<li><p><strong>asteroid_name</strong> (<em>str</em>) – actual NEO designator</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – count of NEOs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with data from the database, or error message string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="backend.determine_threat">
+<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">determine_threat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">distance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.determine_threat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines threat level based on distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>distance</strong> (<em>float</em>) – Distance of NEO in AU</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Message about threat level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="backend.impact_date_calculator">
+<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">impact_date_calculator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vel</span></em>, <em class="sig-param"><span class="n">dist</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.impact_date_calculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates date of impact given current velocity and distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> (<em>float</em>) – velocity of NEO in MPH</p></li>
+<li><p><strong>dist</strong> (<em>float</em>) – distance of NEO in miles</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>date string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="backend.neos_approaching">
+<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">neos_approaching</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">days</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.neos_approaching" title="Permalink to this definition">¶</a></dt>
+<dd><p>NEOs approaching Earth within given days</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>days</strong> (<em>int</em>) – range of days for approaching NEOs</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary of NEOs approaching Earth within given days</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Near Earth Objects Viewer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">capstone</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">backend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frontend.html">frontend module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">capstone</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">capstone</a></li>
+      <li>Next: <a href="frontend.html" title="next chapter">frontend module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Bryan, Jake, Raffi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/backend.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
