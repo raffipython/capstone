@@ -1,46 +1,51 @@
+"""Backend of Near Earth Object Viewer program to conduct
+the methods to obtain the data and do calculations on them.
+To determine, the speed and distances of the asteroids as
+well as print data to specific asteroids. """
+
 import requests
 import datetime as dt
 
 
-def determine_threat(distance):
-    """ Determines threat level based on distance
+def determine_threat(au_distance):
+    """ Determines threat level based on distance.
 
-    :param distance: Distance of NEO in AU
-    :type distance: float
+    :param au_distance: Distance of NEO in AU
+    :type au_distance: float
     :return: Message about threat level
     """
-    if 0.08 < distance <= 0.09:
-        return "Extremely low, safe to lightly monitor."
-    elif 0.06 < distance <= 0.07:
+    if 0.08 < au_distance <= 0.09:
+        return "Extremely low"
+    elif 0.06 < au_distance <= 0.07:
         return "Low"
-    elif 0.04 < distance <= 0.05:
-        return "Moderate, monitor closely for changes in trajectory."
-    elif 0.02 < distance <= 0.03:
-        return "High, start assessing plans of action to defend planet."
-    elif distance <= 0.01:
-        return "Impact imminent. Say a prayer."
+    elif 0.04 < au_distance <= 0.05:
+        return "Moderate, monitor closely"
+    elif 0.02 < au_distance <= 0.03:
+        return "High, plan to intercept"
+    elif au_distance <= 0.01:
+        return "Impact imminent"
     else:
         return "Negligible"
 
 
-def impact_date_calculator(vel, dist):
-    """ Calculates date of impact given current velocity and distance
+def impact_date_calculator(velocity, distance_miles):
+    """ Calculates date of impact given current velocity and distance.
 
-    :param vel: velocity of NEO in MPH
-    :type vel: float
-    :param dist: distance of NEO in miles
-    :type dist: float
+    :param velocity: velocity of NEO in MPH
+    :type velocity: float
+    :param distance_miles: distance of NEO in miles
+    :type distance_miles: float
     :return: date string
     """
     current_date = dt.datetime.now()
-    delta = dt.timedelta(hours=dist/vel)
+    delta = dt.timedelta(hours=distance_miles / velocity)
     impact_date = current_date + delta
     impact_date = impact_date.strftime("%Y-%b-%d %H:%S")
     return impact_date
 
 
 def neos_approaching(days):
-    """ NEOs approaching Earth within given days
+    """ NEOs approaching Earth within given days. It makes the API call to NASA's website for the data about NEOs.
 
     :param days: range of days for approaching NEOs
     :type days: int
@@ -56,7 +61,8 @@ def neos_approaching(days):
 
 
 def asteroid(database, asteroid_name, count):
-    """ Queries database dictionary for a match for the asteroid
+    """ Queries database dictionary for a given asteroid name. It returns a list with asteroid data if a match is found
+    otherwise, it returns Asteroid not found message.
 
     :param database: main data dictionary
     :type database: dict

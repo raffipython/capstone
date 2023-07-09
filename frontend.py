@@ -1,3 +1,9 @@
+"""Frontend of program that sets up a GUI to print data
+obtained from NASA API for asteroids approaching earth within
+the next year. As well as printing data about them, and calculations on
+speed/distance/suspected date of impact.
+"""
+
 import json
 import sys
 import tkinter as tk
@@ -6,11 +12,12 @@ import backend as be
 
 
 def asteroid_data_handler():
-    """ Gets data from text field and searches the database
+    """ Gets data from the search text field and searches the database for that asteroid.
+    If it is the first time calling this function, it populates the whole list of NEOs in the GUI
     :return: None
     """
 
-    text = as_name_entry.get()
+    text = asteroid_name_entry.get()
     if text and len(ast_tree.get_children()) > 0:
         name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db, text, count)
         for item in ast_tree.get_children():
@@ -97,8 +104,8 @@ for col in log_columns:
 asteroid_name = tk.StringVar()
 asteroid_name_label = ttk.Label(search_frame, text="Asteroid Name:", width=14, font=14)
 asteroid_name_label.grid(row=0, column=0)
-as_name_entry = ttk.Entry(search_frame, width=75, textvariable=asteroid_name)
-as_name_entry.grid(row=0, column=1)
+asteroid_name_entry = ttk.Entry(search_frame, width=75, textvariable=asteroid_name)
+asteroid_name_entry.grid(row=0, column=1)
 search_button = ttk.Button(search_frame, text="Search", width=10, command=asteroid_data_handler)
 search_button.grid(row=0, column=2)
 

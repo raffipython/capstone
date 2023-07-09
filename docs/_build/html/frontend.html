@@ -34,10 +34,15 @@
             
   <div class="section" id="module-frontend">
 <span id="frontend-module"></span><h1>frontend module<a class="headerlink" href="#module-frontend" title="Permalink to this headline">¶</a></h1>
+<p>Frontend of program that sets up a GUI to print data
+obtained from NASA API for asteroids approaching earth within
+the next year. As well as printing data about them, and calculations on
+speed/distance/suspected date of impact.</p>
 <dl class="py function">
 <dt id="frontend.asteroid_data_handler">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">asteroid_data_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.asteroid_data_handler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets data from text field and searches the database
+<dd><p>Gets data from the search text field and searches the database for that asteroid.
+If it is the first time calling this function, it populates the whole list of NEOs in the GUI
 :return: None</p>
 </dd></dl>
 

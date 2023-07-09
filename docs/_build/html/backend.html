@@ -35,10 +35,15 @@
             
   <div class="section" id="module-backend">
 <span id="backend-module"></span><h1>backend module<a class="headerlink" href="#module-backend" title="Permalink to this headline">¶</a></h1>
+<p>Backend of Near Earth Object Viewer program to conduct
+the methods to obtain the data and do calculations on them.
+To determine, the speed and distances of the asteroids as
+well as print data to specific asteroids.</p>
 <dl class="py function">
 <dt id="backend.asteroid">
 <code class="sig-prename descclassname">backend.</code><code class="sig-name descname">asteroid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">asteroid_name</span></em>, <em class="sig-param"><span class="n">count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.asteroid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Queries database dictionary for a match for the asteroid</p>
+<dd><p>Queries database dictionary for a given asteroid name. It returns a list with asteroid data if a match is found
+otherwise, it returns Asteroid not found message.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -55,11 +60,11 @@
 
 <dl class="py function">
 <dt id="backend.determine_threat">
-<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">determine_threat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">distance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.determine_threat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines threat level based on distance</p>
+<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">determine_threat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">au_distance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.determine_threat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines threat level based on distance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>distance</strong> (<em>float</em>) – Distance of NEO in AU</p>
+<dd class="field-odd"><p><strong>au_distance</strong> (<em>float</em>) – Distance of NEO in AU</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Message about threat level</p>
@@ -69,13 +74,13 @@
 
 <dl class="py function">
 <dt id="backend.impact_date_calculator">
-<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">impact_date_calculator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vel</span></em>, <em class="sig-param"><span class="n">dist</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.impact_date_calculator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates date of impact given current velocity and distance</p>
+<code class="sig-prename descclassname">backend.</code><code class="sig-name descname">impact_date_calculator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">velocity</span></em>, <em class="sig-param"><span class="n">distance_miles</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.impact_date_calculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates date of impact given current velocity and distance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>vel</strong> (<em>float</em>) – velocity of NEO in MPH</p></li>
-<li><p><strong>dist</strong> (<em>float</em>) – distance of NEO in miles</p></li>
+<li><p><strong>velocity</strong> (<em>float</em>) – velocity of NEO in MPH</p></li>
+<li><p><strong>distance_miles</strong> (<em>float</em>) – distance of NEO in miles</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -87,7 +92,7 @@
 <dl class="py function">
 <dt id="backend.neos_approaching">
 <code class="sig-prename descclassname">backend.</code><code class="sig-name descname">neos_approaching</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">days</span></em><span class="sig-paren">)</span><a class="headerlink" href="#backend.neos_approaching" title="Permalink to this definition">¶</a></dt>
-<dd><p>NEOs approaching Earth within given days</p>
+<dd><p>NEOs approaching Earth within given days. It makes the API call to NASA’s website for the data about NEOs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>days</strong> (<em>int</em>) – range of days for approaching NEOs</p>
