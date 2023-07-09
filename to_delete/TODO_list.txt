@@ -1,6 +1,0 @@
-
-frontend.py
-# click to choose asteroid
-# sorting stuff
-
-
