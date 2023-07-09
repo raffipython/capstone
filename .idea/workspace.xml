@@ -4,8 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Added comment to impact function">
-      <change afterPath="$PROJECT_DIR$/.idea/capstone.iml" afterDir="false" />
+    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="sphinx documentation">
+      <change afterPath="$PROJECT_DIR$/to_delete/backup_code/backend.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/to_delete/backup_code/frontend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/capstone.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/to_delete/TODO_list.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/backend.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/modules.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/.buildinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/backend.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/frontend.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/modules.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/alabaster.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/basic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/doctools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/documentation_options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/file.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery-3.5.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/language_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/minus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/pygments.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/searchtools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/underscore-1.3.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/underscore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/backend.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/frontend.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/modules.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +77,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Razor/PycharmProjects/capstone",
+    "last_opened_file_path": "C:/Users/Razor/PycharmProjects/capstone/to_delete/backup_code",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
   },
   "keyToStringList": {
@@ -50,6 +88,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Razor\PycharmProjects\capstone\to_delete\backup_code" />
+      <recent name="C:\Users\Razor\PycharmProjects\capstone\docs" />
       <recent name="C:\Users\Razor\PycharmProjects\capstone" />
       <recent name="C:\Users\Razor\PycharmProjects\capstone\project" />
     </key>
@@ -179,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688811561777</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="sphinx documentation">
+      <created>1688870159775</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1688870159775</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,6 +254,7 @@
     <MESSAGE value="vel and trajectory fixes" />
     <MESSAGE value="merge scrolling code" />
     <MESSAGE value="Added comment to impact function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comment to impact function" />
+    <MESSAGE value="sphinx documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="sphinx documentation" />
   </component>
 </project>
