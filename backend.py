@@ -40,7 +40,7 @@ def impact_date_calculator(velocity, distance_miles):
     current_date = dt.datetime.now()
     delta = dt.timedelta(hours=distance_miles / velocity)
     impact_date = current_date + delta
-    impact_date = impact_date.strftime("%Y-%b-%d %H:%S")
+    impact_date = impact_date.strftime("%Y-%b-%d %H:%M")
     return impact_date
 
 
