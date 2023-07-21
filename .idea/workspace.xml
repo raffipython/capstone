@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Added logging and clicking in the GUI">
+    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Updated documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend_raffi_phase2.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend_raffi_phase2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontendAdjusting.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_raffi_phase2.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689899582619</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Updated documentation">
+      <created>1689940430894</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1689940430894</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,9 +252,9 @@
     <MESSAGE value="Added comment to impact function" />
     <MESSAGE value="sphinx documentation" />
     <MESSAGE value="Deleted old files after copying it to shared folder on google drive" />
-    <MESSAGE value="Updated documentation" />
     <MESSAGE value="added pytest with minor bug fix in backend.py" />
     <MESSAGE value="Added logging and clicking in the GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging and clicking in the GUI" />
+    <MESSAGE value="Updated documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated documentation" />
   </component>
 </project>

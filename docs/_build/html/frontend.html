@@ -40,9 +40,18 @@ the next year. As well as printing data about them, and calculations on
 speed/distance/suspected date of impact.</p>
 <dl class="py function">
 <dt id="frontend.asteroid_data_handler">
-<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">asteroid_data_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.asteroid_data_handler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">asteroid_data_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">clear</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.asteroid_data_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets data from the search text field and searches the database for that asteroid.
 If it is the first time calling this function, it populates the whole list of NEOs in the GUI
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="frontend.on_item_click">
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">on_item_click</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.on_item_click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets an event object from GUI, and it calls the asteroid data handler function to only show one asteroid
+:param event: tkinter event object from the GUI to indicate which item was clicked on
+:type event: tkinter.Event
 :return: None</p>
 </dd></dl>
 
