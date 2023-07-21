@@ -14,9 +14,16 @@ import datetime as dt
 
 
 def on_item_click(event):
+    """ Gets an event object from GUI, and it calls the asteroid data handler function to only show one asteroid
+    :param event: tkinter event object from the GUI to indicate which item was clicked on
+    :type event: tkinter.Event
+    :return: None
+    """
     item = ast_tree.selection()[0]
     item_text = ast_tree.item(item, 'text')
-    print(f"Item '{item_text}' was clicked.")
+    msg = f"{actions.get(5)} {item_text} was clicked, GUI event {event}"
+    logging.warning(msg)
+    print(type(event))
     asteroid_data_handler(item_text)
 
 
@@ -157,11 +164,13 @@ if __name__ == '__main__':
     api_data = be.neos_approaching(DAYS)
     db = json.loads(api_data.content)
     count = db['count']
-    FORMAT = '%(asctime)s %(message)s'  # Log format
+
+    # Logging configurations
+    FORMAT = '%(asctime)s %(message)s'
     current_date = dt.datetime.now().strftime("%Y-%b-%d")
     LOG_FILENAME = f"{current_date}.txt"
     logging.basicConfig(filename=LOG_FILENAME, format=FORMAT)
-    actions = {1: "START", 2: "STOP", 3: "SEARCH", 4: "ERROR"}
+    actions = {1: "START", 2: "STOP", 3: "SEARCH", 4: "ERROR", 5: "GUI EVENT"}
     logging.warning(actions.get(1))
 
     if api_data.status_code == 200:
