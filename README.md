@@ -21,5 +21,7 @@ For example:
 
 In PyCharm open frontend.py, press `SHIFT` + `F10`
 
+You can search for an asteroid via clicking on an asteroid or searching by name. Searching an empty search bar will refresh the list.
+
 Note: there is a known Python bug for MacOS with tkinter, you need Python 3.11 to make it work. The GUI will not work on Python 3.9
 
