@@ -26,6 +26,15 @@ def on_item_click(event):
     asteroid_data_handler(item_text)
 
 
+def on_exit():
+    """ Custom tkinter method that will write a log entry upon exit
+    :return: None
+    """
+    status_label.config(text="Status: Exited")
+    logging.warning(actions.get(2))
+    index.destroy()
+
+
 def asteroid_data_handler(name="", clear=False):
     """ Gets data from the search text field and searches the database for that asteroid.
     If it is the first time calling this function, it populates the whole list of NEOs in the GUI
@@ -95,6 +104,10 @@ index.geometry("1400x700")
 index.resizable(False, False)
 index.columnconfigure(1, weight=1)
 
+# Create a label to display the status
+status_label = ttk.Label(index, text="Status: Starting...")
+status_label.grid(row=5, column=0, columnspan=2, pady=10)
+
 # Create a new label to contain a title
 main_title = ttk.Label(index, text="Near Earth Objects Viewer")
 main_title.grid(row=0, column=1, pady=30)
@@ -142,6 +155,7 @@ log_columns = ("Asteroid", "Au Distance", "Distance Miles", "threat", "Velocity"
                "DTG", "Event Type")
 log_tree = ttk.Treeview(log_frame, columns=log_columns, show='headings')
 log_tree.grid(row=1, column=0)
+# Creates widths for each log column
 column_widths = [100, 80, 100, 60, 70, 140, 120, 140, 100]
 for col, width in zip(log_columns, column_widths):
     log_tree.heading(col, text=col)
@@ -170,6 +184,7 @@ log_tree["yscrollcommand"] = log_scroll.set
 exit_button = ttk.Button(button_frame, text="Exit", command=index.destroy)
 exit_button.grid(row=0, column=3)
 
+
 # Run mainloop
 if __name__ == '__main__':
     DAYS = 30  # NEOs approaching filter limit in days
@@ -184,17 +199,19 @@ if __name__ == '__main__':
     LOG_FILENAME = f"{current_date}.txt"
     logging.basicConfig(filename=LOG_FILENAME,
                         level=logging.WARNING,
-                        format='%(asctime)s - %(message)s - %(levelname)s',
+                        format='%(asctime)s - %(message)s',
                         datefmt='%Y-%b-%d %H:%M:%S')
 
     actions = {1: "START", 2: "STOP", 3: "SEARCH", 4: "ERROR", 5: "GUI EVENT"}
     logging.warning(actions.get(1))
 
     if api_data.status_code == 200:
+        status_label.config(text="Status: Started")
         asteroid_data_handler(clear=True)
         index.mainloop()
         logging.warning(actions.get(2))
     else:
+        status_label.config(text="Status: Error")
         print("Something wrong, could not fetch data. Exiting.")
         logging.warning(actions.get(4))
         sys.exit(1)
