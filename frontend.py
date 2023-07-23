@@ -100,22 +100,24 @@ count = 0
 # Create the main window as index and set default window size
 index = tk.Tk()
 index.title("Near Earth Objects Viewer")
-index.geometry("1400x700")
+index.geometry("1075x680")
 index.resizable(False, False)
-index.columnconfigure(1, weight=1)
+
+# Font for labels
+bold_font = ("TkDefaultFont", 12, "bold")
 
 # Create a label to display the status
 status_label = ttk.Label(index, text="Status: Starting...")
-status_label.grid(row=5, column=0, columnspan=2, pady=10)
+status_label.grid(row=5, column=0, columnspan=2, pady=5)
 
 # Create a new label to contain a title
 main_title = ttk.Label(index, text="Near Earth Objects Viewer")
-main_title.grid(row=0, column=1, pady=30)
-main_title.config(font=24)
+main_title.grid(row=0, column=1, pady=30, sticky='W')
+main_title.config(font=("TkDefaultFont", 20, "bold"))
 
 # Search frame
 search_frame = ttk.Frame(index)
-search_frame.grid(row=1, column=1, sticky="SW")
+search_frame.grid(row=1, column=1, sticky="W")
 
 # Create a Frame to house asteroid list
 asteroid_list_fame = ttk.Frame(index)
@@ -123,7 +125,7 @@ asteroid_list_fame.grid(row=2, column=0, columnspan=2)
 
 # Frame to house logs
 log_frame = ttk.Frame(index)
-log_frame.grid(row=3, column=0, columnspan=2)
+log_frame.grid(row=3, column=0, columnspan=2, sticky='EW')
 
 # Create a frame to house buttons
 button_frame = ttk.Frame(index)
@@ -132,11 +134,14 @@ button_frame.grid(row=4, column=0, columnspan=2)
 # Image link https://th.bing.com/th?id=OIF.d%2fCjgd%2fJ42C1VjiLa2RSXg&pid=ImgDet&rs=1
 img = tk.PhotoImage(file="asteroid.gif")
 imagelab = ttk.Label(index, image=img)
-imagelab.grid(row=0, column=0, rowspan=2)
+imagelab.grid(row=0, column=0, rowspan=2, sticky='EW')
 
 # Asteroid List
-ttk.Label(asteroid_list_fame, text="This is where our asteroid list will go from JSON dump",
-          background="grey", width=100).grid(row=0, column=0, sticky="N")
+ast_label = ttk.Label(asteroid_list_fame, text="Current Known Asteroids",
+                      background="grey", font=bold_font)
+ast_label.configure(anchor="center")
+ast_label.grid(row=0, column=0, sticky="EW")
+
 # API fields: Designation (des), Distance (dist)
 asteroid_columns = ("Designation", "Distance (AU)", "Distance (Miles)", "Threat", "Velocity", "Closest Approach",
                     "Date if trajectory changed")
@@ -148,15 +153,19 @@ for col in asteroid_columns:
     ast_tree.heading(col, text=col)
     ast_tree.column(col, anchor="center", stretch=False, width=150)
 
-# Log List
-ttk.Label(log_frame, text="This is where our logs will be",
-          background="black", foreground="white", width=100).grid(row=0, column=0, sticky="N")
+# Log Label
+log_label = ttk.Label(log_frame, text="Event Logs",
+                      background="grey", foreground="black", font=bold_font)
+log_label.configure(anchor="center")
+log_label.grid(row=0, column=0, sticky="EW")
+
+# Log Treeview
 log_columns = ("Asteroid", "Au Distance", "Distance Miles", "threat", "Velocity", "Closest approach", "Impact date",
                "DTG", "Event Type")
 log_tree = ttk.Treeview(log_frame, columns=log_columns, show='headings')
-log_tree.grid(row=1, column=0)
+log_tree.grid(row=1, column=0, sticky='EW')
 # Creates widths for each log column
-column_widths = [100, 80, 100, 60, 70, 140, 120, 140, 100]
+column_widths = [117, 97, 117, 77, 85, 155, 135, 155, 115]
 for col, width in zip(log_columns, column_widths):
     log_tree.heading(col, text=col)
     log_tree.column(col, anchor="center", stretch=True, width=width)
@@ -165,7 +174,7 @@ for col, width in zip(log_columns, column_widths):
 asteroid_name = tk.StringVar()
 asteroid_name_label = ttk.Label(search_frame, text="Asteroid Name:", width=14, font=14)
 asteroid_name_label.grid(row=0, column=0)
-asteroid_name_entry = ttk.Entry(search_frame, width=75, textvariable=asteroid_name)
+asteroid_name_entry = ttk.Entry(search_frame, width=60, textvariable=asteroid_name)
 asteroid_name_entry.grid(row=0, column=1)
 search_button = ttk.Button(search_frame, text="Search", width=10, command=asteroid_data_handler)
 search_button.grid(row=0, column=2)
@@ -182,8 +191,7 @@ log_tree["yscrollcommand"] = log_scroll.set
 
 # Create an exit button
 exit_button = ttk.Button(button_frame, text="Exit", command=index.destroy)
-exit_button.grid(row=0, column=3)
-
+exit_button.grid(row=0, column=0)
 
 # Run mainloop
 if __name__ == '__main__':
