@@ -100,7 +100,7 @@ count = 0
 # Create the main window as index and set default window size
 index = tk.Tk()
 index.title("Near Earth Objects Viewer")
-index.geometry("1075x680")
+index.geometry("1070x680")
 index.resizable(False, False)
 
 # Font for labels
@@ -165,7 +165,7 @@ log_columns = ("Asteroid", "Au Distance", "Distance Miles", "threat", "Velocity"
 log_tree = ttk.Treeview(log_frame, columns=log_columns, show='headings')
 log_tree.grid(row=1, column=0, sticky='EW')
 # Creates widths for each log column
-column_widths = [117, 97, 117, 77, 85, 155, 135, 155, 115]
+column_widths = [117, 97, 117, 77, 85, 155, 134, 154, 114]
 for col, width in zip(log_columns, column_widths):
     log_tree.heading(col, text=col)
     log_tree.column(col, anchor="center", stretch=True, width=width)
