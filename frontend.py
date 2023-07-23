@@ -112,7 +112,7 @@ status_label.grid(row=5, column=0, columnspan=2, pady=5)
 
 # Create a new label to contain a title
 main_title = ttk.Label(index, text="Near Earth Objects Viewer")
-main_title.grid(row=0, column=1, pady=30, sticky='W')
+main_title.grid(row=0, column=1, pady=30, padx=160, sticky='W')
 main_title.config(font=("TkDefaultFont", 20, "bold"))
 
 # Search frame
