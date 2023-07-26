@@ -17,6 +17,10 @@ test_determine_threat_testdata = [(0.081, "Extremely low"),
 
 @pytest.mark.parametrize("test_input,expected", test_determine_threat_testdata)
 def test_determine_threat(test_input, expected):
+    """ Tests determine_threat function in backend.py
+    Checks for:
+        Distance of an asteroid and the correct message for that distance
+    """
     assert backend.determine_threat(test_input) == expected
 
 
@@ -27,6 +31,10 @@ test_impact_date_calculator_testdata = [([10, 100], test_impact_date_calculator_
 
 @pytest.mark.parametrize("test_input,expected", test_impact_date_calculator_testdata)
 def test_impact_date_calculator(test_input, expected):
+    """ Tests impact_date_calculator function in backend.py
+    Checks for:
+        Given a distance, if impact date is calculated correctly
+    """
     assert backend.impact_date_calculator(test_input[0], test_input[1]) == expected
 
 
@@ -35,6 +43,10 @@ test_neos_approaching_testdata = [(1, True)]
 
 @pytest.mark.parametrize("test_input,expected", test_neos_approaching_testdata)
 def test_neos_approaching(test_input, expected):
+    """ Tests neos_approaching function in backend.py
+    Checks for:
+        Overall API fetching of the data from NASA website actually worked
+    """
     assert isinstance(backend.neos_approaching(test_input), requests.models.Response) == expected
 
 
@@ -65,5 +77,9 @@ test_asteroid_testdata = [([test_asteroid_testdata_dictionary, "My_Asteroid", 3]
 
 @pytest.mark.parametrize("test_input,expected", test_asteroid_testdata)
 def test_asteroid(test_input, expected):
+    """ Tests asteroid function in backend.py
+    Checks for:
+        Given an astroid name, it returns a valid list of data fields.
+    """
     assert backend.asteroid(test_asteroid_testdata[0][0][0], test_asteroid_testdata[0][0][1],
                             test_asteroid_testdata[0][0][2]) == expected

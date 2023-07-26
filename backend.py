@@ -1,7 +1,12 @@
 """Backend of Near Earth Object Viewer program to conduct
 the methods to obtain the data and do calculations on them.
 To determine, the speed and distances of the asteroids as
-well as print data to specific asteroids. """
+well as print data to specific asteroids.
+
+authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
+date: 2023/07/27
+version: 0.0.3
+"""
 
 import requests
 import datetime as dt
@@ -51,13 +56,16 @@ def neos_approaching(days):
     :type days: int
     :return: dictionary of NEOs approaching Earth within given days
     """
-
-    data = None
     try:
         data = requests.get(f"https://ssd-api.jpl.nasa.gov/cad.api?date-max=%2B{days}&diameter=1")
-        return data
-    except data.status_code != 200:
-        return data
+        if data.status_code == 200:
+            return data
+        else:
+            print("Error: Could not fetch data from the API.")
+            return None
+    except requests.exceptions.RequestException as e:
+        print("Error:", e)
+        return None
 
 
 def asteroid(database, asteroid_name, count):
@@ -72,7 +80,6 @@ def asteroid(database, asteroid_name, count):
     :type count: int
     :return: list with data from the database, or error message string
     """
-
     try:
         names_dictionary = {}
         for i in range(0, count):

@@ -2,12 +2,16 @@
 obtained from NASA API for asteroids approaching earth within
 the next year. As well as printing data about them, and calculations on
 speed/distance/suspected date of impact.
+
+authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
+date: 2023/07/27
+version: 0.0.3
 """
 
 import json
 import sys
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import backend as be
 import logging
 import datetime as dt
@@ -40,12 +44,19 @@ def asteroid_data_handler(name="", clear=False):
     If it is the first time calling this function, it populates the whole list of NEOs in the GUI
     :return: None
     """
-
     if name:
         text = name
     else:
         text = asteroid_name_entry.get()
     if text and len(ast_tree.get_children()) > 0:
+        valid_name = False
+        # Checks if a user searches for an invalid asteroid
+        for i in range(0, count):
+            if text.strip() == db['data'][i][0]:
+                valid_name = True
+        if not valid_name:
+            messagebox.showinfo("Warning", f"Invalid asteroid name: {text}")
+            return
         name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db, text, count)
         for item in ast_tree.get_children():
             ast_tree.delete(item)
