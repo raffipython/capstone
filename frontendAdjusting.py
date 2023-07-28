@@ -4,7 +4,7 @@ the next year. As well as printing data about them, and calculations on
 speed/distance/suspected date of impact.
 
 authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
-date: 2023/07/27
+date: 2023/07/28
 version: 0.0.3
 """
 
@@ -12,7 +12,7 @@ import json
 import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
-import backendAdjusting as be
+import backend as be
 import logging
 import datetime as dt
 from dateutil.relativedelta import relativedelta
@@ -59,60 +59,12 @@ def list_sorter(full_list, sort_by):
         return sorted(full_list, key=lambda x: x[sort_by])
 
 
-def sorted_by_name():
+def sorted_by_field(field):
     """
     TODO
     """
-    asteroid_data_handler(sorted_by=0)
-    logging.warning(f"{actions.get(6)}: NAME")
-
-
-def sorted_by_distance_au():
-    """
-    TODO
-    """
-    asteroid_data_handler(sorted_by=1)
-    logging.warning(f"{actions.get(6)}: AU")
-
-
-def sorted_by_distance_miles():
-    """
-    TODO
-    """
-    asteroid_data_handler(sorted_by=2)
-    logging.warning(f"{actions.get(6)}: MILES")
-
-
-def sorted_by_threat():
-    """
-    TODO
-    """
-    asteroid_data_handler(sorted_by=3)
-    logging.warning(f"{actions.get(6)}: THREAT")
-
-
-def sorted_by_velocity():
-    """
-    TODO
-    """
-    asteroid_data_handler(sorted_by=4)
-    logging.warning(f"{actions.get(6)}: VELOCITY")
-
-
-def sorted_by_closest_approach():
-    """
-    TODO
-    """
-    asteroid_data_handler(sorted_by=5)
-    logging.warning(f"{actions.get(6)}: CLOSEST APPROACH")
-
-
-def sorted_by_trajectory_date():
-    """
-    TODO
-    """
-    asteroid_data_handler(sorted_by=6)
-    logging.warning(f"{actions.get(6)}: TRAJECTORY")
+    asteroid_data_handler(sorted_by=field)
+    logging.warning(f"Sorting by field number {field}")
 
 
 def extract_velocity(velocity):
@@ -127,41 +79,40 @@ def extract_velocity(velocity):
 
 # Handles dropdown selection
 def on_dropdown_select(event=None):
+    """
+    TODO
+    """
     selected_value = dropdown.get()
+    logging.warning(f"GUI event {event}")
+
+    clear_gui()
     if selected_value == "1 Week":
         # Calculate the date one week from the current date
-        clear_gui()
         one_week_from_now = dt.datetime.now() + dt.timedelta(days=7)
         one_week_str = one_week_from_now.strftime("%Y-%m-%d")
         asteroid_data_handler(time_interval=one_week_str)
     elif selected_value == "1 Month":
-        clear_gui()
         one_month_from_now = dt.datetime.now() + relativedelta(days=30)
         one_month_str = one_month_from_now.strftime("%Y-%b-%d")
         asteroid_data_handler(time_interval=one_month_str)
     elif selected_value == "6 Months":
-        clear_gui()
         six_months_from_now = dt.datetime.now() + relativedelta(months=6)
         six_months_str = six_months_from_now.strftime("%Y-%b-%d")
         asteroid_data_handler(time_interval=six_months_str)
     elif selected_value == "1 Year":
-        clear_gui()
         one_year_from_now = dt.datetime.now() + relativedelta(months=12)
         one_year_str = one_year_from_now.strftime("%Y-%b-%d")
         asteroid_data_handler(time_interval=one_year_str)
     # Sort by Distance Miles in descending order
     elif selected_value == "3 Farthest":
-        clear_gui()
-        asteroid_data_handler(sorted_by=2, reverse=True)
+        asteroid_data_handler(sorted_by=2, reverse=True, limit=3)
     elif selected_value == "3 Closest":
-        clear_gui()
-        asteroid_data_handler(sorted_by=2, reverse=False)
+        asteroid_data_handler(sorted_by=2, reverse=False, limit=3)
     elif selected_value == "3 Fastest":
-        clear_gui()
-        asteroid_data_handler(sorted_by=4, reverse=True)
+        asteroid_data_handler(sorted_by=4, reverse=True, limit=3)
 
 
-def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=False):
+def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=False, limit=None):
     """ Gets data from the search text field and searches the database for that asteroid.
     If it is the first time calling this function, it populates the whole list of NEOs in the GUI
     :return: None
@@ -180,11 +131,8 @@ def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=F
         name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db, text, count)
         for item in ast_tree.get_children():
             ast_tree.delete(item)
-        ast_tree.insert('',
-                        'end',
-                        text=name,
-                        values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date)
-                        )
+        ast_tree.insert(
+            '', 'end', text=name, values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date))
         # Log SEARCH type and data on the asteroid
         msg = f"{actions.get(3)} {name}, {dist_min}, {dist_min_miles}, {threat}, {velocity}, {ca_date}, {impact_date}"
         logging.warning(msg)
@@ -208,25 +156,25 @@ def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=F
             data_list.append([name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date])
             data_list = list_sorter(data_list, sorted_by)
 
+            # TODO CLEAN UP
             # Limit to the 3 closest or farthest, depending on the selected option
             if sorted_by == 2 and len(data_list) > 3:
                 # If sorting by distance miles and more than 3 asteroids, limit to three farthest
-                data_list = sorted(data_list, key=lambda x: float(x[sorted_by]), reverse=reverse)[:3]
+                data_list = sorted(data_list, key=lambda x: float(x[sorted_by]), reverse=reverse)[:limit]
             elif sorted_by == 2:
                 # If sorting by distance miles and 3 or fewer asteroids, limit to three closest
-                data_list = sorted(data_list, key=lambda x: float(x[sorted_by]), reverse=reverse)[:3]
+                data_list = sorted(data_list, key=lambda x: float(x[sorted_by]), reverse=reverse)[:limit]
             elif sorted_by == 4 and len(data_list) > 3:
                 # If sorting by velocity and more than 3 asteroids, limit to three fastest
-                data_list = sorted(data_list, key=lambda x: extract_velocity(x[sorted_by]), reverse=reverse)[:3]
+                data_list = sorted(data_list, key=lambda x: extract_velocity(x[sorted_by]), reverse=reverse)[:limit]
             elif sorted_by == 4:
                 # If sorting by velocity and 3 or fewer asteroids, limit to three slowest
-                data_list = sorted(data_list, key=lambda x: extract_velocity(x[sorted_by]), reverse=reverse)[:3]
+                data_list = sorted(data_list, key=lambda x: extract_velocity(x[sorted_by]), reverse=reverse)[:limit]
 
         # loop through sorted data list and insert to the gui
         for neo in data_list:
             ast_tree.insert(
                 '', 'end', text=neo[0], values=(neo[0], neo[1], neo[2], neo[3], neo[4], neo[5], neo[6]))
-            # '', 'end', text=name, values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date))
 
     # Checks the time to print designated threshold of asteroids
     if time_interval:
@@ -240,9 +188,8 @@ def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=F
             # Filter the data based on the specified time interval
             filtered_data_list = []
             for i in range(count):
-                name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db,
-                                                                                                     db['data'][i][0],
-                                                                                                     count)
+                name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(
+                    db, db['data'][i][0], count)
 
                 # Convert ca_date_string to a datetime_object
                 ca_date = dt.datetime.strptime(ca_date, "%Y-%b-%d %H:%M")
@@ -360,19 +307,19 @@ exit_button = ttk.Button(button_frame, text="Exit", command=index.destroy)
 exit_button.grid(row=0, column=0)
 
 # Create Sorting buttons
-sort_name_button = ttk.Button(button_frame, text="Sort by Name", command=sorted_by_name)
+sort_name_button = ttk.Button(button_frame, text="Sort by Name", command=lambda arg=0: sorted_by_field(arg))
 sort_name_button.grid(row=0, column=1)
-sort_au_button = ttk.Button(button_frame, text="Sort by AU", command=sorted_by_distance_au)
+sort_au_button = ttk.Button(button_frame, text="Sort by AU", command=lambda arg=1: sorted_by_field(arg))
 sort_au_button.grid(row=0, column=2)
-sort_miles_button = ttk.Button(button_frame, text="Sort by Miles", command=sorted_by_distance_miles)
+sort_miles_button = ttk.Button(button_frame, text="Sort by Miles", command=lambda arg=2: sorted_by_field(arg))
 sort_miles_button.grid(row=0, column=3)
-sort_threat_button = ttk.Button(button_frame, text="Sort by Threat", command=sorted_by_threat)
+sort_threat_button = ttk.Button(button_frame, text="Sort by Threat", command=lambda arg=3: sorted_by_field(arg))
 sort_threat_button.grid(row=0, column=4)
-sort_velocity_button = ttk.Button(button_frame, text="Sort by Velocity", command=sorted_by_velocity)
+sort_velocity_button = ttk.Button(button_frame, text="Sort by Velocity", command=lambda arg=4: sorted_by_field(arg))
 sort_velocity_button.grid(row=0, column=5)
-sort_ca_button = ttk.Button(button_frame, text="Sort by CA", command=sorted_by_closest_approach)
+sort_ca_button = ttk.Button(button_frame, text="Sort by CA", command=lambda arg=5: sorted_by_field(arg))
 sort_ca_button.grid(row=0, column=6)
-sort_traj_button = ttk.Button(button_frame, text="Sort by TRAJ", command=sorted_by_trajectory_date)
+sort_traj_button = ttk.Button(button_frame, text="Sort by TRAJ", command=lambda arg=6: sorted_by_field(arg))
 sort_traj_button.grid(row=0, column=7)
 
 # Creates dropdown menu with selections
@@ -383,7 +330,7 @@ dropdown.bind("<<ComboboxSelected>>", on_dropdown_select)
 
 # Run mainloop
 if __name__ == '__main__':
-    DAYS = 30  # NEOs approaching filter limit in days
+    DAYS = 365  # NEOs approaching filter limit in days (1 year)
     api_data = be.neos_approaching(DAYS)
     db = json.loads(api_data.content)
     count = db['count']
