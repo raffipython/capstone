@@ -39,14 +39,87 @@ def on_exit():
     index.destroy()
 
 
-def asteroid_data_handler(name="", clear=False):
+def clear_gui():
+    """ Clears gui from all neos
+       :return: None
+    """
+    for item in ast_tree.get_children():
+        ast_tree.delete(item)
+
+
+def list_sorter(full_list, sort_by):
+    """
+    TODO
+    """
+    # sort_by index
+    if not sort_by:
+        return full_list
+    else:
+        return sorted(full_list, key=lambda x: x[sort_by])
+
+
+def sorted_by_name():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=0)
+    logging.warning(f"{actions.get(6)}: NAME")
+
+
+def sorted_by_distance_au():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=1)
+    logging.warning(f"{actions.get(6)}: AU")
+
+
+def sorted_by_distance_miles():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=2)
+    logging.warning(f"{actions.get(6)}: MILES")
+
+
+def sorted_by_threat():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=3)
+    logging.warning(f"{actions.get(6)}: THREAT")
+
+
+def sorted_by_velocity():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=4)
+    logging.warning(f"{actions.get(6)}: VELOCITY")
+
+
+def sorted_by_closest_approach():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=5)
+    logging.warning(f"{actions.get(6)}: CLOSEST APPROACH")
+
+
+def sorted_by_trajectory_date():
+    """
+    TODO
+    """
+    asteroid_data_handler(sorted_by=6)
+    logging.warning(f"{actions.get(6)}: TRAJECTORY")
+
+
+def asteroid_data_handler(text="", sorted_by=None):
     """ Gets data from the search text field and searches the database for that asteroid.
     If it is the first time calling this function, it populates the whole list of NEOs in the GUI
     :return: None
     """
-    if name:
-        text = name
-    else:
+    if not text:
         text = asteroid_name_entry.get()
     if text and len(ast_tree.get_children()) > 0:
         valid_name = False
@@ -70,38 +143,27 @@ def asteroid_data_handler(name="", clear=False):
         logging.warning(msg)
 
         # Define dtg_value and event_type_value for logging
-        dtg_value = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        event_type_value = actions.get(3)  # This gets the event TYPE for SEARCH action
+        dtg = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        event = actions.get(3)  # This gets the event TYPE for SEARCH action
 
         # Log the same data to the log_tree
-        log_tree.insert('',
-                        'end',
-                        values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date, dtg_value,
-                                event_type_value)
-                        )
-    elif not clear:
-        for item in ast_tree.get_children():
-            ast_tree.delete(item)
-        for i in range(count):
-            name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db,
-                                                                                                 db['data'][i][0],
-                                                                                                 count)
-            ast_tree.insert('',
-                            'end',
-                            text=name,
-                            values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date)
-                            )
+        log_tree.insert(
+            '', 'end', values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date, dtg, event))
+
+    # Populating GUI with one NEO data
     else:
-        if len(ast_tree.get_children()) == 0:
-            for i in range(count):
-                name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db,
-                                                                                                     db['data'][i][0],
-                                                                                                     count)
-                ast_tree.insert('',
-                                'end',
-                                text=name,
-                                values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date)
-                                )
+        clear_gui()
+        data_list = []
+        for i in range(count):
+            name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(
+                db,  db['data'][i][0], count)
+            data_list.append([name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date])
+            data_list = list_sorter(data_list, sorted_by)
+        # loop through sorted data list and insert to the gui
+        for neo in data_list:
+            ast_tree.insert(
+                '', 'end', text=neo[0], values=(neo[0], neo[1], neo[2], neo[3], neo[4], neo[5], neo[6]))
+            # '', 'end', text=name, values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date))
 
 
 # Initialize variables
@@ -204,6 +266,23 @@ log_tree["yscrollcommand"] = log_scroll.set
 exit_button = ttk.Button(button_frame, text="Exit", command=index.destroy)
 exit_button.grid(row=0, column=0)
 
+# Create Sorting buttons
+sort_name_button = ttk.Button(button_frame, text="Sort by Name", command=sorted_by_name)
+sort_name_button.grid(row=0, column=1)
+sort_au_button = ttk.Button(button_frame, text="Sort by AU", command=sorted_by_distance_au)
+sort_au_button.grid(row=0, column=2)
+sort_miles_button = ttk.Button(button_frame, text="Sort by Miles", command=sorted_by_distance_miles)
+sort_miles_button.grid(row=0, column=3)
+sort_threat_button = ttk.Button(button_frame, text="Sort by Threat", command=sorted_by_threat)
+sort_threat_button.grid(row=0, column=4)
+sort_velocity_button = ttk.Button(button_frame, text="Sort by Velocity", command=sorted_by_velocity)
+sort_velocity_button.grid(row=0, column=5)
+sort_ca_button = ttk.Button(button_frame, text="Sort by CA", command=sorted_by_closest_approach)
+sort_ca_button.grid(row=0, column=6)
+sort_traj_button = ttk.Button(button_frame, text="Sort by TRAJ", command=sorted_by_trajectory_date)
+sort_traj_button.grid(row=0, column=7)
+
+
 # Run mainloop
 if __name__ == '__main__':
     DAYS = 30  # NEOs approaching filter limit in days
@@ -221,12 +300,12 @@ if __name__ == '__main__':
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%b-%d %H:%M:%S')
 
-    actions = {1: "START", 2: "STOP", 3: "SEARCH", 4: "ERROR", 5: "GUI EVENT"}
+    actions = {1: "START", 2: "STOP", 3: "SEARCH", 4: "ERROR", 5: "GUI EVENT", 6: "SORT EVENT"}
     logging.warning(actions.get(1))
 
     if api_data.status_code == 200:
         status_label.config(text="Status: Started")
-        asteroid_data_handler(clear=True)
+        asteroid_data_handler()
         index.mainloop()
         logging.warning(actions.get(2))
     else:
