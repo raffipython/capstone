@@ -71,6 +71,9 @@ def sorted_by_field(field):
     """
     asteroid_data_handler(sorted_by=field)
     logging.warning(f"Sorting by field number {field}")
+    now = dt.datetime.now().strftime("%Y-%b-%d %H:%M:%S")
+    log_entry = ["SORTING ACTION", "", "", "", "", "", "", now, actions.get(5)]
+    log_tree.insert('', 'end', values=log_entry)
 
 
 def extract_velocity(velocity):
@@ -89,7 +92,7 @@ def on_dropdown_select(event):
     :type event: tkinter.Event
     :return: None    """
     selected_value = dropdown.get()
-    logging.warning(f"GUI event {event}")
+    logging.warning(f"GUI event: Dropdown selected - {selected_value} {event}")
 
     clear_gui()
 
@@ -121,7 +124,12 @@ def on_dropdown_select(event):
     elif selected_value == "3 Slowest":
         asteroid_data_handler(sorted_by=4, reverse=False, limit=3)
     else:
-        logging.warning(f"Error {event}")
+        logging.warning(f"Error: Invalid dropdown selection - {selected_value}")
+
+    # Log the dropdown selection to the log_tree
+    now = dt.datetime.now().strftime("%Y-%b-%d %H:%M:%S")
+    log_entry = ["DROPDOWN SELECTION", "", "", "", "", "", "", now, actions.get(6)]
+    log_tree.insert('', 'end', values=log_entry)
 
 
 def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=False, limit=None):
@@ -271,10 +279,11 @@ log_label.configure(anchor="center")
 log_label.grid(row=0, column=0, sticky="EW")
 
 # Log Treeview
-log_columns = ("Asteroid", "Au Distance", "Distance Miles", "threat", "Velocity", "Closest approach", "Impact date",
+log_columns = ("Asteroid", "Au Distance", "Distance Miles", "Threat", "Velocity", "Closest approach", "Impact date",
                "DTG", "Event Type")
 log_tree = ttk.Treeview(log_frame, columns=log_columns, show='headings')
 log_tree.grid(row=1, column=0, sticky='EW')
+
 # Creates widths for each log column
 column_widths = [117, 97, 117, 77, 85, 155, 134, 154, 114]
 for col, width in zip(log_columns, column_widths):
