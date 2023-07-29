@@ -4,7 +4,7 @@ the next year. As well as printing data about them, and calculations on
 speed/distance/suspected date of impact.
 
 authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
-date: 2023/07/28
+date: 2023/07/29
 version: 0.0.3
 """
 
@@ -42,15 +42,19 @@ def on_exit():
 
 def clear_gui():
     """ Clears gui from all neos
-       :return: None
+    :return: None
     """
     for item in ast_tree.get_children():
         ast_tree.delete(item)
 
 
 def list_sorter(full_list, sort_by):
-    """
-    TODO
+    """ Sorts a list of lists by a given column number
+    :param full_list: list of lists containing data to be sorted
+    :type full_list: list
+    :param sort_by: the column to be sorted by, it is an integer indicating which column
+    :type sort_by: int
+    :return sorted list
     """
     # sort_by index
     if not sort_by:
@@ -60,8 +64,10 @@ def list_sorter(full_list, sort_by):
 
 
 def sorted_by_field(field):
-    """
-    TODO
+    """ A function to sort the data of NEO in the GUI given a column/field to sort by
+    :param field: column name to sort the data by in the GUI
+    :type field: int
+    :return: None
     """
     asteroid_data_handler(sorted_by=field)
     logging.warning(f"Sorting by field number {field}")
@@ -77,14 +83,16 @@ def extract_velocity(velocity):
         return 0.0
 
 
-def on_dropdown_select(event=None):
-    """
-    TODO Handles dropdown selection
-    """
+def on_dropdown_select(event):
+    """ Gets an event object from GUI, which is from the dropdown menu and displays the relevant data in the GUI
+    :param event: tkinter event object from the GUI to indicate which item was selected from the dropdown menu
+    :type event: tkinter.Event
+    :return: None    """
     selected_value = dropdown.get()
     logging.warning(f"GUI event {event}")
 
     clear_gui()
+
     if selected_value == "1 Week":
         # Calculate the date one week from the current date
         one_week_from_now = dt.datetime.now() + dt.timedelta(days=7)
@@ -92,16 +100,17 @@ def on_dropdown_select(event=None):
         asteroid_data_handler(time_interval=one_week_str)
     elif selected_value == "1 Month":
         one_month_from_now = dt.datetime.now() + relativedelta(days=30)
-        one_month_str = one_month_from_now.strftime("%Y-%b-%d")
+        one_month_str = one_month_from_now.strftime("%Y-%m-%d")
         asteroid_data_handler(time_interval=one_month_str)
     elif selected_value == "6 Months":
         six_months_from_now = dt.datetime.now() + relativedelta(months=6)
-        six_months_str = six_months_from_now.strftime("%Y-%b-%d")
+        six_months_str = six_months_from_now.strftime("%Y-%m-%d")
         asteroid_data_handler(time_interval=six_months_str)
     elif selected_value == "1 Year":
         one_year_from_now = dt.datetime.now() + relativedelta(months=12)
-        one_year_str = one_year_from_now.strftime("%Y-%b-%d")
+        one_year_str = one_year_from_now.strftime("%Y-%m-%d")
         asteroid_data_handler(time_interval=one_year_str)
+
     # Sort by Distance Miles in descending order
     elif selected_value == "3 Farthest":
         asteroid_data_handler(sorted_by=2, reverse=True, limit=3)
@@ -132,8 +141,7 @@ def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=F
             messagebox.showinfo("Warning", f"Invalid asteroid name: {text}")
             return
         name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(db, text, count)
-        for item in ast_tree.get_children():
-            ast_tree.delete(item)
+        clear_gui()
         ast_tree.insert(
             '', 'end', text=name, values=(name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date))
         # Log SEARCH type and data on the asteroid
@@ -176,22 +184,18 @@ def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=F
             time_interval = dt.datetime.strptime(time_interval, "%Y-%m-%d")
         except ValueError:
             time_interval = None
-
         if time_interval is not None:
             # Filter the data based on the specified time interval
             filtered_data_list = []
             for i in range(count):
                 name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date = be.asteroid(
                     db, db['data'][i][0], count)
-
                 # Convert ca_date_string to a datetime_object
                 ca_date = dt.datetime.strptime(ca_date, "%Y-%b-%d %H:%M")
-
                 # Check if the ca_date is within the specified time_interval
                 if ca_date and ca_date <= time_interval:
                     filtered_data_list.append([name, dist_min, dist_min_miles, threat, velocity, ca_date, impact_date])
-            for item in ast_tree.get_children():
-                ast_tree.delete(item)
+            clear_gui()
             # Insert the filtered data to the GUI
             for neo in filtered_data_list:
                 ast_tree.insert(

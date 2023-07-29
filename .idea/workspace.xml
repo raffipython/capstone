@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Cleaned up logic and added sorting">
+    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Cleaned up functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/backend.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/backend.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/backend.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/backend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/frontend.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/frontend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontendAdjusting.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontendAdjusting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontendAdjusting.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690549108535</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Cleaned up functions">
+      <created>1690579182148</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1690579182148</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,6 +388,7 @@
     <MESSAGE value="Updated documentation and merged frontend" />
     <MESSAGE value="Fixed issues from phase 2 feedback" />
     <MESSAGE value="Cleaned up logic and added sorting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up logic and added sorting" />
+    <MESSAGE value="Cleaned up functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up functions" />
   </component>
 </project>

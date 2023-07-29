@@ -39,13 +39,47 @@ obtained from NASA API for asteroids approaching earth within
 the next year. As well as printing data about them, and calculations on
 speed/distance/suspected date of impact.</p>
 <p>authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
-date: 2023/07/27
+date: 2023/07/29
 version: 0.0.3</p>
 <dl class="py function">
 <dt id="frontend.asteroid_data_handler">
-<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">asteroid_data_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">clear</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.asteroid_data_handler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">asteroid_data_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">sorted_by</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">time_interval</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">reverse</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.asteroid_data_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets data from the search text field and searches the database for that asteroid.
 If it is the first time calling this function, it populates the whole list of NEOs in the GUI
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="frontend.clear_gui">
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">clear_gui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.clear_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears gui from all neos
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="frontend.extract_velocity">
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">extract_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">velocity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.extract_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts the numeric part from the velocity string and converts it to a float.
+For example, converts ‘23659.85 MPH’ to 23659.85.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="frontend.list_sorter">
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">list_sorter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_list</span></em>, <em class="sig-param"><span class="n">sort_by</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.list_sorter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorts a list of lists by a given column number
+:param full_list: list of lists containing data to be sorted
+:type full_list: list
+:param sort_by: the column to be sorted by, it is an integer indicating which column
+:type sort_by: int
+:return sorted list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="frontend.on_dropdown_select">
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">on_dropdown_select</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.on_dropdown_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets an event object from GUI, which is from the dropdown menu and displays the relevant data in the GUI
+:param event: tkinter event object from the GUI to indicate which item was selected from the dropdown menu
+:type event: tkinter.Event
 :return: None</p>
 </dd></dl>
 
@@ -62,6 +96,15 @@ If it is the first time calling this function, it populates the whole list of NE
 <dd><p>Gets an event object from GUI, and it calls the asteroid data handler function to only show one asteroid
 :param event: tkinter event object from the GUI to indicate which item was clicked on
 :type event: tkinter.Event
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="frontend.sorted_by_field">
+<code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">sorted_by_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.sorted_by_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to sort the data of NEO in the GUI given a column/field to sort by
+:param field: column name to sort the data by in the GUI
+:type field: int
 :return: None</p>
 </dd></dl>
 
