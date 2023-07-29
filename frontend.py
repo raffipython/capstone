@@ -210,11 +210,12 @@ count = 0
 # Create the main window as index and set default window size
 index = tk.Tk()
 index.title("Near Earth Objects Viewer")
-index.geometry("1070x680")
+index.geometry("1070x690")
 index.resizable(False, False)
 
 # Font for labels
-bold_font = ("TkDefaultFont", 12, "bold")
+bold_font = ("TkDefaultFont", 16, "bold")
+normal_font = ("TkDefaultFont", 14)
 
 # Create a label to display the status
 status_label = ttk.Label(index, text="Status: Starting...")
@@ -223,7 +224,7 @@ status_label.grid(row=5, column=0, columnspan=2, pady=5)
 # Create a new label to contain a title
 main_title = ttk.Label(index, text="Near Earth Objects Viewer")
 main_title.grid(row=0, column=1, pady=30, padx=160, sticky='W')
-main_title.config(font=("TkDefaultFont", 20, "bold"))
+main_title.config(font=("TkDefaultFont", 24, "bold"))
 
 # Search frame
 search_frame = ttk.Frame(index)
@@ -282,10 +283,10 @@ for col, width in zip(log_columns, column_widths):
 
 # Asteroid search bar
 asteroid_name = tk.StringVar()
-asteroid_name_label = ttk.Label(search_frame, text="Asteroid Name:", width=14, font=14)
+asteroid_name_label = ttk.Label(search_frame, text="Asteroid Name:", width=14, font=normal_font)
 asteroid_name_label.grid(row=0, column=0)
-asteroid_name_entry = ttk.Entry(search_frame, width=60, textvariable=asteroid_name)
-asteroid_name_entry.grid(row=0, column=1)
+asteroid_name_entry = ttk.Entry(search_frame, width=40, textvariable=asteroid_name)
+asteroid_name_entry.grid(row=0, column=1, sticky='W')
 search_button = ttk.Button(search_frame, text="Search", width=10, command=asteroid_data_handler)
 search_button.grid(row=0, column=2)
 
@@ -319,11 +320,13 @@ sort_ca_button.grid(row=0, column=6)
 sort_traj_button = ttk.Button(button_frame, text="Sort by Trajectory", command=lambda arg=6: sorted_by_field(arg))
 sort_traj_button.grid(row=0, column=7)
 
-# Creates dropdown menu with selections
+# Creates dropdown menu with selections using ttk Combobox
 values = ["1 Week", "1 Month", "6 Months", "1 Year", "3 Farthest", "3 Closest", "3 Fastest", "3 Slowest"]
-dropdown = ttk.Combobox(search_frame, values=values)
-dropdown.grid(row=0, column=3, padx=10, pady=5)
+dropdown = ttk.Combobox(search_frame, values=values, width=23)
+dropdown.grid(row=0, column=4, padx=5, pady=5)
 dropdown.bind("<<ComboboxSelected>>", on_dropdown_select)
+view_label = ttk.Label(search_frame, text="     Select View:", font=normal_font)  # Spaces are for left padding
+view_label.grid(row=0, column=3)
 
 # Run mainloop
 if __name__ == '__main__':
