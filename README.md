@@ -19,9 +19,12 @@ Run the frontend.py file in your Python interpreter or IDE.
 
 For example:
 
-In PyCharm open frontend.py, press `SHIFT` + `F10`
+In PyCharm open `frontend.py`, then press `SHIFT` + `F10`
 
 You can search for an asteroid via clicking on an asteroid or searching by name. Searching an empty search bar will refresh the list.
 
 Note: there is a known Python bug for MacOS with tkinter, you need Python 3.11 to make it work. The GUI will not work on Python 3.9
 
+# Unit Testing
+
+In `capstone-main` root folder you can run (In Pycharm running on Windows) `pytest.exe -v -W ignore::DeprecationWarning` You should get 10 tests with status PASSED. If you are using Linux/MacOS the pytest.exe binary might be named differently.
