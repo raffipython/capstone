@@ -27,4 +27,4 @@ Note: there is a known Python bug for MacOS with tkinter, you need Python 3.11 t
 
 # Unit Testing
 
-In `capstone-main` root folder you can run (In Pycharm running on Windows) `pytest.exe -v -W ignore::DeprecationWarning` You should get 10 tests with status PASSED. If you are using Linux/MacOS the pytest.exe binary might be named differently.
+In the `capstone-main` root folder you can run (In Pycharm running on Windows) `pytest.exe -v -W ignore::DeprecationWarning` You should get 10 tests with status PASSED. If you are using Linux/MacOS the pytest.exe binary might be named differently.
