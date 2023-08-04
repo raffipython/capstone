@@ -45,15 +45,32 @@ version: 0.0.3</p>
 <dt id="frontend.asteroid_data_handler">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">asteroid_data_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">sorted_by</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">time_interval</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">reverse</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.asteroid_data_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets data from the search text field and searches the database for that asteroid.
-If it is the first time calling this function, it populates the whole list of NEOs in the GUI
-:return: None</p>
+If it is the first time calling this function, it populates the whole list of NEOs in the GUI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – asteroid name if passed to the method</p></li>
+<li><p><strong>sorted_by</strong> (<em>int</em>) – column number to sort by</p></li>
+<li><p><strong>time_interval</strong> (<em>str</em>) – string of time range formatted from the dropdown menu</p></li>
+<li><p><strong>reverse</strong> (<em>bool</em>) – boolean to sort the data in reverse if true</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – integer to limit the data shown in the gui</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="frontend.clear_gui">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">clear_gui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.clear_gui" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clears gui from all neos
-:return: None</p>
+<dd><p>Clears gui from all neos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -61,51 +78,84 @@ If it is the first time calling this function, it populates the whole list of NE
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">extract_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">velocity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.extract_velocity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts the numeric part from the velocity string and converts it to a float.
 For example, converts ‘23659.85 MPH’ to 23659.85.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>velocity</strong> (<em>str</em>) – string of velocity</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float of extracted velocity</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="frontend.list_sorter">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">list_sorter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_list</span></em>, <em class="sig-param"><span class="n">sort_by</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.list_sorter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sorts a list of lists by a given column number
-:param full_list: list of lists containing data to be sorted
-:type full_list: list
-:param sort_by: the column to be sorted by, it is an integer indicating which column
-:type sort_by: int
-:return sorted list</p>
+<dd><p>Sorts a list of lists by a given column number</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>full_list</strong> (<em>list</em>) – list of lists containing data to be sorted</p></li>
+<li><p><strong>sort_by</strong> (<em>int</em>) – the column to be sorted by, it is an integer indicating which column</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sorted list</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="frontend.on_dropdown_select">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">on_dropdown_select</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.on_dropdown_select" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets an event object from GUI, which is from the dropdown menu and displays the relevant data in the GUI
-:param event: tkinter event object from the GUI to indicate which item was selected from the dropdown menu
-:type event: tkinter.Event
-:return: None</p>
+<dd><p>Gets an event object from GUI, which is from the dropdown menu and displays the relevant data in the GUI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>tkinter.Event</em>) – tkinter event object from the GUI to indicate which item was selected from the dropdown menu</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="frontend.on_exit">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">on_exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.on_exit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Custom tkinter method that will write a log entry upon exit
-:return: None</p>
+<dd><p>Custom tkinter method that will write a log entry upon exit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="frontend.on_item_click">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">on_item_click</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.on_item_click" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets an event object from GUI, and it calls the asteroid data handler function to only show one asteroid
-:param event: tkinter event object from the GUI to indicate which item was clicked on
-:type event: tkinter.Event
-:return: None</p>
+<dd><p>Gets an event object from GUI, and it calls the asteroid data handler function to only show one asteroid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>tkinter.Event</em>) – tkinter event object from the GUI to indicate which item was clicked on</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="frontend.sorted_by_field">
 <code class="sig-prename descclassname">frontend.</code><code class="sig-name descname">sorted_by_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.sorted_by_field" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function to sort the data of NEO in the GUI given a column/field to sort by
-:param field: column name to sort the data by in the GUI
-:type field: int
-:return: None</p>
+<dd><p>A function to sort the data of NEO in the GUI given a column/field to sort by</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field</strong> (<em>int</em>) – column name to sort the data by in the GUI</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

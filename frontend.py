@@ -20,6 +20,7 @@ from dateutil.relativedelta import relativedelta
 
 def on_item_click(event):
     """ Gets an event object from GUI, and it calls the asteroid data handler function to only show one asteroid
+
     :param event: tkinter event object from the GUI to indicate which item was clicked on
     :type event: tkinter.Event
     :return: None
@@ -33,6 +34,7 @@ def on_item_click(event):
 
 def on_exit():
     """ Custom tkinter method that will write a log entry upon exit
+
     :return: None
     """
     status_label.config(text="Status: Exited")
@@ -42,6 +44,7 @@ def on_exit():
 
 def clear_gui():
     """ Clears gui from all neos
+
     :return: None
     """
     for item in ast_tree.get_children():
@@ -50,11 +53,12 @@ def clear_gui():
 
 def list_sorter(full_list, sort_by):
     """ Sorts a list of lists by a given column number
+
     :param full_list: list of lists containing data to be sorted
     :type full_list: list
     :param sort_by: the column to be sorted by, it is an integer indicating which column
     :type sort_by: int
-    :return sorted list
+    :return: sorted list
     """
     # sort_by index
     if not sort_by:
@@ -65,6 +69,7 @@ def list_sorter(full_list, sort_by):
 
 def sorted_by_field(field):
     """ A function to sort the data of NEO in the GUI given a column/field to sort by
+
     :param field: column name to sort the data by in the GUI
     :type field: int
     :return: None
@@ -79,6 +84,10 @@ def sorted_by_field(field):
 def extract_velocity(velocity):
     """Extracts the numeric part from the velocity string and converts it to a float.
     For example, converts '23659.85 MPH' to 23659.85.
+
+    :param velocity: string of velocity
+    :type velocity: str
+    :return: float of extracted velocity
     """
     try:
         return float(velocity.split()[0])
@@ -88,6 +97,7 @@ def extract_velocity(velocity):
 
 def on_dropdown_select(event):
     """ Gets an event object from GUI, which is from the dropdown menu and displays the relevant data in the GUI
+
     :param event: tkinter event object from the GUI to indicate which item was selected from the dropdown menu
     :type event: tkinter.Event
     :return: None    """
@@ -135,6 +145,17 @@ def on_dropdown_select(event):
 def asteroid_data_handler(text="", sorted_by=None, time_interval=None, reverse=False, limit=None):
     """ Gets data from the search text field and searches the database for that asteroid.
     If it is the first time calling this function, it populates the whole list of NEOs in the GUI
+
+    :param text: asteroid name if passed to the method
+    :type text: str
+    :param sorted_by: column number to sort by
+    :type sorted_by: int
+    :param time_interval: string of time range formatted from the dropdown menu
+    :type time_interval: str
+    :param reverse: boolean to sort the data in reverse if true
+    :type reverse: bool
+    :param limit: integer to limit the data shown in the gui
+    :type limit: int
     :return: None
     """
     if not text:

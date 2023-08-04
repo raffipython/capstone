@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Merged, added gui logging for the sorting event and fixed some formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/frontend.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/frontend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
