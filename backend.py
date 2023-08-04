@@ -4,8 +4,8 @@ To determine, the speed and distances of the asteroids as
 well as print data to specific asteroids.
 
 authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
-date: 2023/07/29
-version: 0.0.3
+date: 2023/08/04
+version: 1.0.0
 """
 
 import requests

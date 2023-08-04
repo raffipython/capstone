@@ -1,8 +1,8 @@
 """Testing for frontend.py
 
 authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
-date: 2023/07/27
-version: 0.0.3
+date: 2023/08/04
+version: 1.0.0
 """
 import frontend
 

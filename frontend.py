@@ -4,8 +4,8 @@ the next year. As well as printing data about them, and calculations on
 speed/distance/suspected date of impact.
 
 authors: Bryan Wynes, Jacob Scanlan, and Raffi Jubrael
-date: 2023/07/29
-version: 0.0.3
+date: 2023/08/04
+version: 1.0.0
 """
 
 import json

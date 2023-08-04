@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Merged, added gui logging for the sorting event and fixed some formatting">
+    <list default="true" id="d302a9b8-8e49-4ecc-ac54-9ed70a396d04" name="Changes" comment="Fixed frontend docstrings and rerun Sphinx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/backend.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/backend.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/frontend.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/backend.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/backend.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/frontend.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/frontend.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_frontend.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690662430406</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Fixed frontend docstrings and rerun Sphinx">
+      <created>1691150713560</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1691150713560</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -381,7 +393,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Next year" />
     <MESSAGE value="more functions" />
     <MESSAGE value="changed name and banner, added items for UI" />
     <MESSAGE value="Modified asteroidGUI as a new file and removed the need for pillow module and added the image file locally" />
@@ -406,7 +417,8 @@
     <MESSAGE value="Cleaned up functions" />
     <MESSAGE value="Documentation and fixed one bug" />
     <MESSAGE value="Merged, added gui logging for the sorting event and fixed some formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged, added gui logging for the sorting event and fixed some formatting" />
+    <MESSAGE value="Fixed frontend docstrings and rerun Sphinx" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed frontend docstrings and rerun Sphinx" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone$frontend.coverage" NAME="frontend Coverage Results" MODIFIED="1690651467113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
